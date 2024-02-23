@@ -5,9 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 public class Schedule {
-
+    
     private List<ScheduledFlight> scheduledFlights;
-
+    FlightDirector director = new FlightDirector();
 
     public Schedule() {
         scheduledFlights = new ArrayList<>();
@@ -18,7 +18,15 @@ public class Schedule {
     }
 
     public void scheduleFlight(Flight flight, Date date) {
-        ScheduledFlight scheduledFlight = new ScheduledFlight(flight.getNumber(), flight.getDeparture(), flight.getArrival(), flight.getAircraft(), date);
+        ScheduledFlight standardFlight = director.scheduleStandardFlight(
+            1234, 
+            new Airport("JFK"), 
+            new Airport("LAX"), 
+            new PassengerPlane("Boeing 737"), 
+            new Date(), 
+            passengersList
+        );
+        // ScheduledFlight scheduledFlight = new ScheduledFlight(flight.getNumber(), flight.getDeparture(), flight.getArrival(), flight.getAircraft(), date);
         scheduledFlights.add(scheduledFlight);
     }
 
